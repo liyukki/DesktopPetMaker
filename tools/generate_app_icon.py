@@ -31,7 +31,7 @@ BRAND_MARK_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180
     <path d="M106 160c14 12 30 12 44 0" fill="none" stroke="#FFFDF5" stroke-width="7" stroke-linecap="round"/>
   </g>
   <text x="190" y="82" font-family="Segoe UI, Microsoft YaHei UI, sans-serif" font-size="46" font-weight="700" fill="#202327">Desktop Pet Maker</text>
-  <text x="192" y="128" font-family="Microsoft YaHei UI, Segoe UI, sans-serif" font-size="26" fill="#687078">???? ? AI ?????????</text>
+  <text x="192" y="128" font-family="Microsoft YaHei UI, Noto Sans CJK SC, Segoe UI, sans-serif" font-size="26" fill="#687078">桌宠制作 · AI 互动创作平台</text>
 </svg>
 """
 
