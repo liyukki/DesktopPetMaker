@@ -2,7 +2,18 @@
 
 This is the only current architecture fact source. Older reports are historical snapshots and are not current pass certificates.
 
-Last updated: 2026-07-16 (UI and brand system redesign)
+Last updated: 2026-07-16 (public source layout classification)
+
+## Source Layout
+
+- Production C++ code lives under `src/`; the repository root no longer mixes unrelated implementation files.
+- `src/app`: process entry point, Control Center, and system tray composition.
+- `src/project`: project model, registry, persistence, petpack, and archive boundary.
+- `src/runtime`: the official desktop pet runtime, rendering, placement, bubble, and instance lifecycle.
+- `src/ai/core`, `src/ai/chat`, `src/ai/ui`: AI infrastructure, multi-role conversation, and AI windows.
+- `src/editor`, `src/import`: maker/editor workflows and import parsers.
+- `src/journal`, `src/integrations`, `src/ui/theme`: journal, external tools, and shared visual system.
+- `docs/SOURCE_FILE_INDEX.md` is the maintained file-by-file responsibility index.
 
 ## Runtime
 

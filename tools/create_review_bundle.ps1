@@ -95,36 +95,16 @@ if (Test-Path -LiteralPath $manifestVerifyTool -PathType Leaf) {
 Push-Location $projectRoot
 try {
     $diffInputs = @(
-        ".gitignore","CMakeLists.txt","aidialogwindow.cpp","aidialogwindow.h","aiprovider.cpp","aiprovider.h",
-        "aisettingsdialog.cpp","aisettingsdialog.h","editorwindow.cpp","editorwindow.h",
-        "main.cpp","moodjournal.cpp","moodjournal.h","petproject.cpp","petproject.h","archivecommandrunner.cpp","archivecommandrunner.h",
-        "runtimepetwindow.cpp","runtimepetwindow.h","runtimepetmanager.cpp","runtimepetmanager.h","renderbackend.cpp","renderbackend.h",
-        "screenplacementutil.cpp","screenplacementutil.h","systemtraycontroller.cpp","systemtraycontroller.h","desktop_pet.rc",
-        "petruntimeinstance.cpp","petruntimeinstance.h","runtimeactionresult.h","petprojectregistry.cpp","petprojectregistry.h",
-        "credentialstore.cpp","credentialstore.h","aiproviderprofileregistry.cpp","aiproviderprofileregistry.h",
-        "aiproviderprofileservice.cpp","aiproviderprofileservice.h",
-        "petairequestcoordinator.cpp","petairequestcoordinator.h",
-        "actionmaterialwindow.cpp","actionmaterialwindow.h","alphaboundingboxutil.cpp","alphaboundingboxutil.h",
-        "assetqualityanalyzer.cpp","assetqualityanalyzer.h","spritesheetslicer.cpp","spritesheetslicer.h","spritesheetimportdialog.cpp","spritesheetimportdialog.h",
-        "proceduralmotiongenerator.cpp","proceduralmotiongenerator.h","motionpromptlibrary.cpp","motionpromptlibrary.h",
-        "aiassetpromptwizard.cpp","aiassetpromptwizard.h","petbehaviorrule.h",
-        "shimejiimportwizard.cpp","shimejiimportwizard.h","toolintegrationmanager.cpp","toolintegrationmanager.h",
-        "aiactiondescriptor.h","aiactionvalidator.h","aiactionvalidator.cpp","chathistoryentry.h","aiconversationroom.h","aiconversationroom.cpp","aiconversationroomrepository.cpp","aiconversationroomrepository.h",
-        "aiconversationroommanager.cpp","aiconversationroommanager.h",
-        "aiconversationconsolewindow.cpp","aiconversationconsolewindow.h",
-        "petcontrolcenterwindow.cpp","petcontrolcenterwindow.h",
-        "petspeechbubblewindow.cpp","petspeechbubblewindow.h",
-        "petconversationcontext.h",
-        "ui/theme/apptheme.cpp","ui/theme/apptheme.h","ui/theme/themeconstants.h",
-        "ui/theme/iconprovider.cpp","ui/theme/iconprovider.h",
-        "platform_smoke_tests.cpp","SOURCE_MANIFEST_SHA256.txt","ASSET_LICENSES.json",
-        "ASSET_LICENSES.json",
-        ".githooks/pre-commit","tools/install_git_hooks.ps1",
-        "tools/create_review_bundle.ps1","tools/check_text_encoding.py","tools/check_cmake_source_completeness.py",
-        "tools/verify_final_claims.py"
+        ".gitignore","CMakeLists.txt","desktop_pet.rc","resources.qrc",
+        "SOURCE_MANIFEST_SHA256.txt","ASSET_LICENSES.json",".githooks/pre-commit"
     )
-    $diffInputs += Get-ChildItem -LiteralPath (Join-Path $projectRoot "tests") -Recurse -File | ForEach-Object {
-        $_.FullName.Substring($projectRoot.Length + 1)
+    foreach ($sourceDirectory in @("src", "tests", "tools")) {
+        $sourcePath = Join-Path $projectRoot $sourceDirectory
+        if (Test-Path -LiteralPath $sourcePath -PathType Container) {
+            $diffInputs += Get-ChildItem -LiteralPath $sourcePath -Recurse -File | ForEach-Object {
+                $_.FullName.Substring($projectRoot.Length + 1)
+            }
+        }
     }
     $diffInputs += Get-ChildItem -LiteralPath $projectRoot -Filter "*.md" -File | ForEach-Object { $_.Name }
     $untracked = & git ls-files --others --exclude-standard -- @diffInputs
@@ -193,28 +173,7 @@ try {
     }
 
     $proFiles = @(
-        ".gitignore","CMakeLists.txt","main.cpp","runtimepetwindow.cpp","runtimepetwindow.h",
-        "runtimepetmanager.cpp","runtimepetmanager.h","renderbackend.cpp","renderbackend.h","petcontrolcenterwindow.cpp","petcontrolcenterwindow.h",
-        "screenplacementutil.cpp","screenplacementutil.h","systemtraycontroller.cpp","systemtraycontroller.h","desktop_pet.rc","resources.qrc",
-        "petruntimeinstance.cpp","petruntimeinstance.h","runtimeactionresult.h","petprojectregistry.cpp","petprojectregistry.h",
-        "credentialstore.cpp","credentialstore.h","aiproviderprofileregistry.cpp","aiproviderprofileregistry.h",
-        "aiproviderprofileservice.cpp","aiproviderprofileservice.h",
-        "petairequestcoordinator.cpp","petairequestcoordinator.h",
-        "actionmaterialwindow.cpp","actionmaterialwindow.h","alphaboundingboxutil.cpp","alphaboundingboxutil.h",
-        "assetqualityanalyzer.cpp","assetqualityanalyzer.h","spritesheetslicer.cpp","spritesheetslicer.h","spritesheetimportdialog.cpp","spritesheetimportdialog.h",
-        "proceduralmotiongenerator.cpp","proceduralmotiongenerator.h","motionpromptlibrary.cpp","motionpromptlibrary.h",
-        "aiassetpromptwizard.cpp","aiassetpromptwizard.h","petbehaviorrule.h",
-        "shimejiimportwizard.cpp","shimejiimportwizard.h","toolintegrationmanager.cpp","toolintegrationmanager.h",
-        "aiactiondescriptor.h","aiactionvalidator.h","aiactionvalidator.cpp","chathistoryentry.h","aiconversationroom.h","aiconversationroom.cpp","aiconversationroomrepository.cpp","aiconversationroomrepository.h",
-        "aiconversationroommanager.cpp","aiconversationroommanager.h",
-        "aiconversationconsolewindow.cpp","aiconversationconsolewindow.h",
-        "petspeechbubblewindow.cpp","petspeechbubblewindow.h",
-        "petconversationcontext.h",
-        "petproject.cpp","petproject.h","archivecommandrunner.cpp","archivecommandrunner.h","aidialogwindow.cpp","aidialogwindow.h",
-        "aiprovider.cpp","aiprovider.h","aisettingsdialog.cpp","aisettingsdialog.h",
-        "journalwindow.cpp","journalwindow.h","moodjournal.cpp","moodjournal.h",
-        "editorwindow.cpp","editorwindow.h","previewcanvas.cpp","previewcanvas.h",
-        "platform_smoke_tests.cpp","SOURCE_MANIFEST_SHA256.txt",
+        ".gitignore","CMakeLists.txt","desktop_pet.rc","resources.qrc","SOURCE_MANIFEST_SHA256.txt",
         ".githooks/pre-commit",
         "V5_RELEASE_CONFIGURE_LOG.txt","V5_RELEASE_BUILD_LOG.txt","V5_RELEASE_FINAL_BUILD_LOG.txt",
         "V5_DEBUG_CONFIGURE_LOG.txt","V5_DEBUG_BUILD_LOG.txt","V5_DEBUG_FINAL_BUILD_LOG.txt",
@@ -242,7 +201,7 @@ try {
     Add-DirectoryToZip (Join-Path $projectRoot "resources") "pro/resources"
     Add-DirectoryToZip (Join-Path $projectRoot "tools") "pro/tools"
     Add-DirectoryToZip (Join-Path $projectRoot "tests") "pro/tests"
-    Add-DirectoryToZip (Join-Path $projectRoot "ui") "pro/ui"
+    Add-DirectoryToZip (Join-Path $projectRoot "src") "pro/src"
     Add-FileToZip "D:\DESKTOP_PET_PLATFORM_STRICT_SCORE_PORTABLE3_20260714.md" "review-context/DESKTOP_PET_PLATFORM_STRICT_SCORE_PORTABLE3_20260714.md"
     Add-FileToZip "D:\CODEX_STRICT_NEXT_REMEDIATION_PORTABLE3_20260714.md" "review-context/CODEX_STRICT_NEXT_REMEDIATION_PORTABLE3_20260714.md"
     Add-FileToZip "D:\CODEX_STRICT_REAUDIT_REMEDIATION_20260715_V4.md" "review-context/CODEX_STRICT_REAUDIT_REMEDIATION_20260715_V4.md"
@@ -273,23 +232,23 @@ New-Item -ItemType Directory -Path $tempRoot | Out-Null
 
 $required = @(
     "pro/CMakeLists.txt",
-    "pro/runtimepetwindow.cpp",
-    "pro/runtimepetmanager.cpp",
-    "pro/petairequestcoordinator.cpp",
-    "pro/aiconversationroomrepository.cpp",
-    "pro/aiconversationroom.cpp",
-    "pro/petruntimeinstance.cpp",
-    "pro/petprojectregistry.cpp",
-    "pro/petcontrolcenterwindow.cpp",
-    "pro/platform_smoke_tests.cpp",
-    "pro/renderbackend.cpp",
+    "pro/src/runtime/runtimepetwindow.cpp",
+    "pro/src/runtime/runtimepetmanager.cpp",
+    "pro/src/ai/core/petairequestcoordinator.cpp",
+    "pro/src/ai/chat/aiconversationroomrepository.cpp",
+    "pro/src/ai/chat/aiconversationroom.cpp",
+    "pro/src/runtime/petruntimeinstance.cpp",
+    "pro/src/project/petprojectregistry.cpp",
+    "pro/src/app/petcontrolcenterwindow.cpp",
+    "pro/tests/platform_smoke_tests.cpp",
+    "pro/src/runtime/renderbackend.cpp",
     "pro/tests/runtime_action_tests.cpp",
     "pro/tests/gui_widget_tests.cpp",
     "pro/PLATFORM_IMPLEMENTATION_REPORT.md",
     "pro/THIRD_PARTY_NOTICES.md",
-    "pro/petspeechbubblewindow.cpp",
-    "pro/petconversationcontext.h",
-    "pro/chathistoryentry.h",
+    "pro/src/runtime/petspeechbubblewindow.cpp",
+    "pro/src/ai/core/petconversationcontext.h",
+    "pro/src/ai/core/chathistoryentry.h",
     "pro/tools/check_text_encoding.py",
     "pro/tools/check_cmake_source_completeness.py",
     "pro/tools/verify_final_claims.py",

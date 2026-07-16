@@ -66,6 +66,7 @@ Desktop Pet Maker
 ```
 
 更完整的当前架构事实请查看 [CURRENT_PROJECT_STATE.md](CURRENT_PROJECT_STATE.md)。
+想快速定位每个 `.cpp` / `.h` 的用途，请查看 [源码文件用途索引](docs/SOURCE_FILE_INDEX.md)。
 
 ## 构建
 
@@ -110,15 +111,29 @@ python tools/verify_source_manifest.py --root . --manifest SOURCE_MANIFEST_SHA25
 
 ```text
 .
+├─ src/
+│  ├─ app/               程序入口、管理中心和系统托盘
+│  ├─ project/           pet.json、petpack 和项目注册表
+│  ├─ runtime/           桌宠状态机、物理、渲染与生命周期
+│  ├─ ai/
+│  │  ├─ core/           Provider、凭据、请求与共享数据
+│  │  ├─ chat/           多角色会话模型与协调
+│  │  └─ ui/             单宠聊天和多 AI 控制台
+│  ├─ editor/            桌宠制作器与素材工作台
+│  ├─ import/            Sprite Sheet 和 Shimeji 导入
+│  ├─ journal/           心情日记
+│  ├─ integrations/      外部工具集成
+│  └─ ui/theme/          统一主题、颜色和图标系统
 ├─ tests/                Qt 自动化与回归测试
 ├─ tools/                编码、清单、打包和签名工具
-├─ ui/theme/             统一主题、颜色和图标系统
 ├─ resources/branding/   应用图标与品牌资源
-├─ docs/images/          GitHub 展示截图
+├─ docs/                 架构索引、说明和展示截图
 ├─ licenses/             第三方组件许可证与清单
-├─ CMakeLists.txt
-└─ main.cpp
+└─ CMakeLists.txt
 ```
+
+源码目录入口见 [src/README.md](src/README.md)，逐文件职责见
+[docs/SOURCE_FILE_INDEX.md](docs/SOURCE_FILE_INDEX.md)。
 
 ## AI 配置与安全
 
