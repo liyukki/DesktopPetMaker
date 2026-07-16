@@ -1,0 +1,12 @@
+Microsoft runtime notice
+========================
+
+This distribution may include Microsoft redistributable runtime components,
+D3DCompiler_47.dll, and the software OpenGL implementation copied by Qt's
+deployment tooling. Their redistribution is governed by the applicable
+Microsoft and Qt distribution terms. This notice is not a substitute for
+legal review of the exact release artifact.
+
+Official references:
+https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution
+https://doc.qt.io/qt-6/windows-deployment.html

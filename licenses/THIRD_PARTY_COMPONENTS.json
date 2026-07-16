@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "components": [
+    {
+      "name": "Qt",
+      "version": "6.10.3",
+      "files": [
+        "Qt6Core.dll",
+        "Qt6Gui.dll",
+        "Qt6Network.dll",
+        "Qt6Svg.dll",
+        "Qt6Widgets.dll",
+        "generic/*",
+        "iconengines/*",
+        "imageformats/*",
+        "networkinformation/*",
+        "platforms/*",
+        "styles/*",
+        "tls/*",
+        "translations/*"
+      ],
+      "source": "Qt Online Installer",
+      "license": "LGPL-3.0-or-later or GPL-3.0-only; release owner must confirm the selected licensing route",
+      "linking": "dynamic",
+      "homepage": "https://www.qt.io/licensing/open-source-lgpl-obligations",
+      "modified": false
+    },
+    {
+      "name": "LLVM libc++ and libunwind",
+      "version": "LLVM-MinGW 17.0.6 toolchain distribution",
+      "files": ["libc++.dll", "libunwind.dll"],
+      "source": "Qt LLVM-MinGW toolchain",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "linking": "dynamic",
+      "homepage": "https://llvm.org/docs/DeveloperPolicy.html",
+      "modified": false
+    },
+    {
+      "name": "Microsoft runtime components",
+      "version": "as deployed by windeployqt",
+      "files": ["D3Dcompiler_47.dll", "opengl32sw.dll"],
+      "source": "Qt Windows deployment tooling",
+      "license": "Applicable Microsoft and Qt redistribution terms",
+      "linking": "dynamic/runtime-loaded",
+      "homepage": "https://doc.qt.io/qt-6/windows-deployment.html",
+      "modified": false
+    }
+  ]
+}

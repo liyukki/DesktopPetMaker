@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -eu
+
+python tools/check_text_encoding.py --root .
+python tools/check_cmake_source_completeness.py .
+git diff --check
+git diff --cached --check

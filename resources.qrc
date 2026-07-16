@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/branding">
+        <file alias="app_icon.png">resources/branding/app_icon.png</file>
+        <file alias="app_icon.svg">resources/branding/app_icon.svg</file>
+        <file alias="tray_icon.svg">resources/branding/tray_icon.svg</file>
+        <file alias="brand_mark.svg">resources/branding/brand_mark.svg</file>
+    </qresource>
+</RCC>
